@@ -3,25 +3,45 @@ import { Router }            from '@angular/router';
 
 import { Hero }                from './hero';
 import { HeroService }         from './hero.service';
+import { Weapon }        from './weapon';
+import { WeaponService } from './weapon.service';
 
 @Component({
   selector: 'my-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: [ './heroes.component.css' ]
 })
+
 export class HeroesComponent implements OnInit {
-  heroes: Hero[];
+  heroes: any[];
   selectedHero: Hero;
 
   constructor(
     private heroService: HeroService,
+    private weaponService: WeaponService,
     private router: Router) { }
 
   getHeroes(): void {
     this.heroService
         .getHeroes()
-        .then(heroes => this.heroes = heroes);
+        .then(heroes => {
+          this.heroes = heroes;
+          this.heroes.forEach(hero => {
+            if(hero.weaponId != null){
+              this.weaponService
+              .getWeapon(hero.weaponId)
+              .then(weapon => {
+                hero.weapon = weapon.name; //Associate weaponID with weapon name
+              });
+            }
+          });
+        });
   }
+
+  getWeapo(id: number): number {
+    return id;
+  }
+
 
   add(name: string): void {
     name = name.trim();

@@ -1,11 +1,22 @@
 <div *ngIf="hero">
+
   <h2>{{hero.name}} details!</h2>
   <div>
-    <label>id: </label>{{hero.id}}</div>
+    <label>id: </label>{{hero.id}}
+  </div>
   <div>
     <label>name: </label>
     <input [(ngModel)]="hero.name" placeholder="name" />
-   </div>
+  </div>
+  <div>
+    <label>weapon: </label>
+    <select [(ngModel)]="hero.weaponId" name="weaponId">
+      <option value="">No weapon</option>
+      <option *ngFor="let w of weapons" [value]="w.id">
+        {{w.name}}
+      </option>
+    </select>
+  </div>
   <button (click)="goBack()">Back</button>
   <button (click)="save()">Save</button>
 </div>

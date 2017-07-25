@@ -12,9 +12,12 @@ h2, h3 {
 body {
   margin: 2em;
 }
-body, input[text], button {
+body, input[text], button, select {
   color: #888;
   font-family: Cambria, Georgia;
+}
+select {
+  margin-left: 20px;
 }
 a {
   cursor: pointer;

@@ -10,6 +10,9 @@
       [class.selected]="hero === selectedHero">
     <span class="badge">{{hero.id}}</span>
     <span>{{hero.name}}</span>
+    <span *ngIf="hero.weapon">
+      <span class="weapon">{{hero.weapon}}</span>
+    </span>
     <button class="delete"
       (click)="delete(hero); $event.stopPropagation()">x</button>
   </li>
